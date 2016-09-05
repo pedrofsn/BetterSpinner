@@ -46,7 +46,9 @@ public class BetterSpinner extends AutoCompleteTextView implements AdapterView.O
                                   Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
         if (focused) {
-            performFiltering("", 0);
+            if (getAdapter() != null) {
+                performFiltering("", 0);
+            }
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getWindowToken(), 0);
             setKeyListener(null);
